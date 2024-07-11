@@ -1,4 +1,8 @@
+// framer motion is used in server side
+
+import { motion } from "framer-motion";
 import Image from "next/image";
+import { MotionDiv } from "@/components/MotionDiv";
 
 export interface AnimeProp {
   id: string;
@@ -17,12 +21,32 @@ interface Prop {
   index: number;
 }
 
-function AnimeCard({ anime }: Prop) {
+const variants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
+};
+//motion.div utilise react context qui ne doit etre utilise que dans le client side
+//du coup on aura une erreur
+
+// now we gonna replace motiom.div to MotionDiv which will
+//be now a client side rendering and the other inside will be considered
+// as children it gonna render in server side
+
+// in anime on passe l'index car sur le mobile on voit pas l'animation car on le call à deux endroits
+function AnimeCard({ anime, index }: Prop) {
   return (
-    <div className="max-w-sm rounded relative w-full">
+    <MotionDiv
+      variants={variants}
+      initial="hidden"
+      animate="visible" //base on the variants
+      transition={{ delay: index * 0.25, ease: "easeInOut", duration: 0.5 }}
+      viewport={{ amount: 0 }}
+      className="max-w-sm rounded relative w-full"
+    >
       <div className="relative w-full h-[37vh]">
         <Image
-          src={anime.image.original}
+          // src={anime.image.original} we r missing the main path here so the image wont show
+          src={`https://shikimori.one${anime.image.original}`} // and we  put ${anime.image.original} as a dynamic path
           alt={anime.name}
           fill
           className="rounded-xl"
@@ -64,7 +88,7 @@ function AnimeCard({ anime }: Prop) {
           </div>
         </div>
       </div>
-    </div>
+    </MotionDiv>
   );
 }
 
