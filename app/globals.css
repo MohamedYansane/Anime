@@ -13,6 +13,14 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
+.smychat-screen {
+  position: fixed;
+  bottom: -6px;
+  right: -4px;
+  border: none;
+  z-index: 9999;
+}
+
 :root {
   color-scheme: dark;
 }
