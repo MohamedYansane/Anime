@@ -5,6 +5,7 @@ import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
 
 import "./globals.css";
+import IframeWidget from "@/components/IframeWidget";
 
 const dmSans = DM_Sans({ subsets: ["latin"] });
 
@@ -24,6 +25,8 @@ export default function RootLayout({
         <main className="max-w-7xl mx-auto bg-[#0F1117]">
           <Hero />
           {children}
+          {process.env.NODE_ENV === "production" && <IframeWidget />}
+
           <Footer />
         </main>
       </body>
