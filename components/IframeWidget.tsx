@@ -40,7 +40,7 @@ const IframeWidget = () => {
 
         // send handshake key back to iframe
         iframe.contentWindow?.postMessage(
-          "06680bd4-8ab7-4182-b304-fb970f0504ef",
+          "aec71077-2fd8-4b23-83db-348d580694fe",
           allowedOrigin,
         );
       } catch (error) {
