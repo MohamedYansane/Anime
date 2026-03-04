@@ -19,6 +19,9 @@ const IframeWidget = () => {
     iframe.src = chatbotUrl;
     iframe.classList.add("smychat-screen");
 
+    // j'ajoute cette ligne pour forcer la transparence au niveau du DOM :
+    iframe.setAttribute("allowtransparency", "true");
+
     // append iframe to the document body
     document.body.appendChild(iframe);
 
